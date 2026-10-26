@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="si">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IT3070 - Information Assurance and Security Exam Quiz</title>
+<title>IT3070 - Information Assurance & Security Midterm/Final Quiz</title>
 <style>
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans Sinhala', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         background-color: #f0f2f5;
-        color: #333;
+        color: #2c3e50;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -20,27 +20,28 @@
     #quiz-container {
         background-color: #ffffff;
         border-radius: 12px;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 6px 22px rgba(0,0,0,0.1);
         width: 100%;
         max-width: 880px;
         overflow: hidden;
     }
     #header {
-        background: linear-gradient(135deg, #1e3c72, #2a5298);
+        background: linear-gradient(135deg, #1f3c88, #5893d4);
         color: white;
-        padding: 25px 20px;
+        padding: 22px;
         text-align: center;
     }
     h2 {
         margin: 0 0 10px 0;
         font-size: 1.5em;
+        letter-spacing: 0.5px;
     }
     #timer {
-        font-size: 1.5em;
+        font-size: 1.4em;
         font-weight: bold;
         color: #fff;
-        background-color: rgba(0,0,0,0.25);
-        padding: 6px 16px;
+        background-color: rgba(0,0,0,0.22);
+        padding: 5px 15px;
         border-radius: 6px;
         display: inline-block;
         letter-spacing: 2px;
@@ -50,14 +51,15 @@
     }
     .badge {
         display: inline-block;
-        padding: 4px 10px;
-        border-radius: 4px;
-        font-size: 0.85em;
-        font-weight: bold;
-        margin-bottom: 12px;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.82em;
+        font-weight: 700;
+        margin-bottom: 14px;
+        text-transform: uppercase;
     }
-    .badge-single { background-color: #e3f2fd; color: #0d47a1; }
-    .badge-multiple { background-color: #fce4ec; color: #880e4f; }
+    .badge-single { background-color: #e8f4fd; color: #1f3c88; }
+    .badge-multiple { background-color: #fde8ef; color: #b8004f; }
 
     #question-text {
         font-size: 1.15em;
@@ -72,7 +74,7 @@
     }
     .option {
         background-color: #f8f9fa;
-        border: 2px solid #e9ecef;
+        border: 2px solid #e2e8f0;
         border-radius: 8px;
         padding: 14px 18px;
         margin-bottom: 12px;
@@ -80,8 +82,8 @@
         display: flex;
         align-items: center;
         transition: all 0.2s ease;
-        font-size: 1em;
-        line-height: 1.4;
+        font-size: 0.98em;
+        line-height: 1.45;
     }
     .option input {
         margin-right: 14px;
@@ -89,12 +91,12 @@
         pointer-events: none;
     }
     .option:hover:not(.no-hover) {
-        background-color: #eef2f7;
-        border-color: #2a5298;
+        background-color: #edf2f7;
+        border-color: #5893d4;
     }
     .option.selected {
-        background-color: #e8f0fe;
-        border-color: #1a73e8;
+        background-color: #eaf2fd;
+        border-color: #1f3c88;
     }
     .option.correct {
         background-color: #d4edda !important;
@@ -113,50 +115,50 @@
         padding: 10px 22px;
         border-radius: 6px;
         cursor: pointer;
-        font-size: 1em;
+        font-size: 0.95em;
         font-weight: 600;
-        transition: opacity 0.2s;
+        transition: background-color 0.2s, opacity 0.2s;
     }
     .nav-btn:disabled {
-        opacity: 0.5;
+        opacity: 0.45;
         cursor: not-allowed;
     }
 
-    /* Paper Selection Styles */
+    /* Paper Selection Grid */
     #paper-selection-container {
         padding: 40px 25px;
         text-align: center;
     }
     #paper-selection-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
         gap: 20px;
         margin-top: 25px;
         padding: 0 10px;
     }
     .paper-item {
-        background-color: #f8f9fa;
-        border: 2px solid #dee2e6;
+        background-color: #ffffff;
+        border: 2px solid #e2e8f0;
         border-radius: 10px;
-        padding: 22px 15px;
+        padding: 22px 16px;
         cursor: pointer;
         transition: transform 0.2s, box-shadow 0.2s;
         text-align: center;
     }
     .paper-item:hover {
         transform: translateY(-4px);
-        box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-        border-color: #1e3c72;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        border-color: #1f3c88;
     }
     .paper-item h4 {
         margin: 0 0 8px 0;
         font-size: 1.15em;
-        color: #1e3c72;
+        color: #1f3c88;
     }
     .paper-item p {
         margin: 0;
         font-size: 0.88em;
-        color: #6c757d;
+        color: #64748b;
     }
 
     #navigation-palette {
@@ -165,7 +167,7 @@
         grid-template-columns: repeat(auto-fill, minmax(38px, 1fr));
         gap: 8px;
         border-top: 1px solid #e9ecef;
-        background-color: #fff;
+        background-color: #ffffff;
     }
     .nav-box {
         height: 38px;
@@ -173,15 +175,15 @@
         justify-content: center;
         align-items: center;
         border-radius: 6px;
-        background-color: #f1f3f5;
-        border: 1px solid #ced4da;
+        background-color: #f1f5f9;
+        border: 1px solid #cbd5e1;
         font-weight: 600;
         cursor: pointer;
         font-size: 0.9em;
     }
     .nav-box.current {
-        border: 2px solid #1e3c72;
-        background-color: #e3f2fd;
+        border: 2px solid #1f3c88;
+        background-color: #e0f2fe;
     }
     .nav-box.answered-correct {
         background-color: #28a745;
@@ -195,11 +197,11 @@
     }
 
     #feedback {
-        background-color: #f8f9fa;
-        border-left: 5px solid #2a5298;
-        padding: 18px 25px;
+        background-color: #f8fafc;
+        border-left: 5px solid #1f3c88;
+        padding: 18px 22px;
         margin: 0 25px 15px 25px;
-        border-radius: 4px;
+        border-radius: 6px;
         line-height: 1.6;
     }
 </style>
@@ -208,13 +210,13 @@
 
 <div id="quiz-container">
     <div id="header">
-        <h2>IT3070 - Information Assurance & Security (IAS)</h2>
+        <h2>IT3070 - Information Assurance and Security</h2>
         <div id="timer" style="display: none;">00:00</div>
     </div>
     
     <div id="paper-selection-container">
-        <h3 style="margin-top:0;">කරුණාකර පුහුණු වීමට අවශ්‍ය ප්‍රශ්න පත්‍ර කොටස තෝරන්න:</h3>
-        <p style="color: #6c757d;">(2019 Final Exam ප්‍රශ්න පත්‍රය පාදක කරගත් MCQs සහ Multi-Select ප්‍රශ්න)</p>
+        <h3 style="margin-top:0;">Select a Quiz Section to Start:</h3>
+        <p style="color: #64748b;">(All questions are based on IT3070 Final Examination topics)</p>
         <div id="paper-selection-grid"></div>
     </div>
 
@@ -223,7 +225,7 @@
             <span id="question-badge" class="badge"></span>
             <p id="question-text"></p>
             <ul id="options-list"></ul>
-            <button id="submit-multi-btn" class="nav-btn" style="margin-top: 18px; background-color: #1e3c72; display: none;">Submit Answer</button>
+            <button id="submit-multi-btn" class="nav-btn" style="margin-top: 18px; background-color: #1f3c88; display: none;">Submit Answer</button>
         </div>
 
         <div id="feedback" style="display: none;">
@@ -232,339 +234,339 @@
 
         <div id="navigation-palette"></div>
 
-        <div id="footer" style="padding: 18px 25px; display: flex; justify-content: space-between; align-items: center; background-color: #f8f9fa; border-top: 1px solid #dee2e6;">
-            <button id="back-btn" class="nav-btn" style="background-color: #6c757d;">Previous</button>
-            <span id="progress-text" style="font-weight: 600; color: #495057;"></span>
+        <div id="footer" style="padding: 16px 25px; display: flex; justify-content: space-between; align-items: center; background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
+            <button id="back-btn" class="nav-btn" style="background-color: #64748b;">Previous</button>
+            <span id="progress-text" style="font-weight: 600; color: #475569;"></span>
             <button id="next-btn" class="nav-btn" style="background-color: #28a745;">Next</button>
         </div>
     </div>
 </div>
 
 <script>
-// ---------- IAS EXAM DATA (24 Comprehensive Questions across 4 Parts) ----------
+// ---------- EXAM DATA: QUESTIONS & ANSWERS IN ENGLISH, EXPLANATION IN SINHALA ----------
 const fullQuizData = [
     /* ---------------- PART 1: Question 1 (Concepts, LMS Controls, Law & IP) ---------------- */
     {
         paper: 1,
-        question: "Security concepts වලදී Vulnerability, Threat, සහ Risk අතර වෙනස නිවැරදිව දක්වා ඇති ප්‍රකාශය කුමක්ද?",
+        question: "Which of the following statements correctly differentiates between Vulnerability, Threat, and Risk?",
         type: "single",
         options: [
-            "Vulnerability යනු පද්ධතියට සිදුවන හානියයි; Threat යනු පද්ධතියේ ඇති දුර්වලතාවයයි; Risk යනු ප්‍රහාරකයා වේ.",
-            "Vulnerability යනු පද්ධතියක ඇති දුර්වලතාවයකි (Weakness); Threat යනු එම දුර්වලතාවය ප්‍රයෝජනයට ගත හැකි විභව අනතුරයි (Potential harm); Risk යනු Threat එකක් මඟින් පාඩුවක් සිදුවීමේ සම්භාවිතාව සහ බලපෑමයි (Probability × Impact).",
-            "Risk යනු ස්වභාවික ආපදා පමණි; Vulnerability යනු මෘදුකාංග දෝෂ පමණි.",
-            "Threat සහ Vulnerability යනු එකම අර්ථය ඇති පද දෙකකි."
+            "A Vulnerability is the resulting financial loss, a Threat is a software bug, and Risk is the external hacker.",
+            "A Vulnerability is a weakness in the system; a Threat is a potential occurrence that can exploit that weakness; Risk is the probability and impact of loss if the threat succeeds.",
+            "A Threat is the measure of potential loss, a Risk is an inherent flaw, and a Vulnerability is natural disasters.",
+            "Threat and Vulnerability are synonymous terms used interchangeably in risk assessments."
         ],
         correct: [1],
-        explanation: "<b>Vulnerability:</b> පද්ධතියක ඇති දුර්වලතාවයක් (උදා: Unpatched security bug, දුර්වල මුරපද).<br><b>Threat:</b> එම දුර්වලතාවයෙන් ප්‍රයෝජන ගෙන හානි කළ හැකි සිදුවීමක් හෝ ප්‍රහාරකයෙක් (උදා: Ransomware, Hacker).<br><b>Risk:</b> Threat එකක් මඟින් එම Vulnerability එක අවභාවිත කර ආයතනයට පාඩුවක් සිදුවීමේ සම්භාවිතාව (Likelihood) සහ එහි බලපෑමේ (Impact) එකතුවයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>Vulnerability (දුර්වලතාවය):</b> පද්ධතියක ඇති අඩුපාඩුවක් හෝ දෝෂයක් (උදා: Unpatched software, දුර්වල passwords).<br>• <b>Threat (තර්ජනය):</b> එම දුර්වලතාවය ප්‍රයෝජනයට ගෙන හානියක් සිදුකළ හැකි ඕනෑම බාහිර/අභ්‍යන්තර සාධකයක් (උදා: Ransomware, Malicious actor).<br>• <b>Risk (අවදානම):</b> Threat එකක් මඟින් Vulnerability එකක් exploit කර ආයතනයට හානියක් සිදුවීමේ සම්භාවිතාව (Likelihood) සහ එහි බලපෑමේ (Impact) ගුණිතයයි (Risk = Likelihood × Impact)."
     },
     {
         paper: 1,
-        question: "විශ්වවිද්‍යාලයක Learning Management System (LMS) එකක් ආරක්ෂා කිරීම සඳහා නිර්දේශ කළ හැකි 'Physical Controls' (භෞතික පාලන) 2ක් තෝරන්න. (Select 2)",
+        question: "As an LMS administrator, recommend TWO suitable 'Physical Controls' to protect the LMS server infrastructure. (Select 2)",
         type: "multiple",
         options: [
-            "LMS දත්ත ගබඩා කර ඇති Server room එක සඳහා Biometric / Smart card access පාලනයක් යෙදීම.",
-            "ශිෂ්‍ය ගිණුම් සඳහා Two-Factor Authentication (2FA) අනිවාර්ය කිරීම.",
-            "Server කාමරය තුළ ගිනි නිවන පද්ධති (Fire suppression systems) සහ CCTV නිරීක්ෂණ කැමරා සවි කිරීම.",
-            "Moodle LMS මෘදුකාංගය සඳහා Web Application Firewall (WAF) භාවිතය."
+            "Enforcing biometric or electronic card key access control for the server room doors.",
+            "Configuring Web Application Firewalls (WAF) to filter SQL injection attacks.",
+            "Installing automated clean-agent fire suppression systems and CCTV surveillance inside the datacenter.",
+            "Requiring all students and staff to enable multi-factor authentication."
         ],
         correct: [0, 2],
-        explanation: "Biometric entry, Locked racks, CCTV, සහ Fire suppression පද්ධති භෞතික උපකරණ සහ සේවාදායක පරිශ්‍රය ආරක්ෂා කරන <b>Physical Controls</b> වේ. 2FA සහ WAF යනු <b>Technical Controls</b> වේ."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br><b>Physical Controls</b> යනු පරිගණක හා ජාල උපකරණ ඇති පරිශ්‍රයට භෞතිකව සිදුවන අනවසර ඇතුළුවීම් හෝ ස්වාභාවික හානි වැළැක්වීමට ගන්නා පියවරයි. එබැවින් Biometric දොරටු, CCTV, සහ Fire suppression පද්ධති Physical controls වේ. (WAF සහ MFA යනු Technical Controls වේ)."
     },
     {
         paper: 1,
-        question: "LMS හි දත්ත සහ යෙදුම් ආරක්ෂා කිරීමට යොදාගත හැකි 'Technical Controls' (තාක්ෂණික පාලන) 2ක් තෝරන්න. (Select 2)",
+        question: "Which of the following are categorized as 'Technical Controls' to safeguard LMS data and applications? (Select 2)",
         type: "multiple",
         options: [
-            "සේවකයින් සඳහා තොරතුරු ආරක්ෂණ ප්‍රතිපත්ති (Security Policy) ලේඛනගත කිරීම.",
-            "දත්ත හුවමාරුවේදී SSL/TLS මඟින් දත්ත Encrypt කිරීම සහ නිතිපතා Automated Database Backups ලබා ගැනීම.",
-            "SQL Injection සහ Cross-Site Scripting (XSS) ප්‍රහාර වැළැක්වීමට Input validation සහ Web Application Firewall (WAF) යෙදීම.",
-            "ආරක්ෂක නිලධාරීන් යොදවා දොරටු පරීක්ෂා කිරීම."
-        ],
-        correct: [1, 2],
-        explanation: "Encryption (TLS), WAF, Role-Based Access Control (RBAC), සහ Automated Encrypted Backups යනු තාක්ෂණය හෝ මෘදුකාංග හරහා සිදුකරන <b>Technical Controls</b> වේ."
-    },
-    {
-        paper: 1,
-        question: "LMS පරිපාලනය සඳහා යොදාගත හැකි 'Administrative Controls' (පරිපාලනමය පාලන) මොනවාද? (Select 2)",
-        type: "multiple",
-        options: [
-            "Password Complexity Policy සහ Data Retention Policy සම්පාදනය කර ක්‍රියාත්මක කිරීම.",
-            "Firewall සහ Intrusion Detection Systems (IDS) Install කිරීම.",
-            "ආචාර්ය මණ්ඩලය සහ සිසුන් සඳහා නිතිපතා Security Awareness Training සහ Phishing awareness සැසි පැවැත්වීම.",
-            "Hard drives විනාශ කිරීමට Degausser යන්ත්‍රයක් භාවිත කිරීම."
+            "Enforcing TLS/SSL encryption for data in transit and configuring automated encrypted off-site backups.",
+            "Writing and publishing an acceptable use security policy for university staff.",
+            "Deploying Input Sanitization and Web Application Firewalls (WAF) to prevent XSS and SQLi.",
+            "Positioning physical security guards at the university gateway."
         ],
         correct: [0, 2],
-        explanation: "ආරක්ෂණ ප්‍රතිපත්ති සම්පාදනය (Security Policies), Background checks, සහ Security Awareness Training යනු මිනිස් ක්‍රියාකාරකම් සහ ක්‍රියාපටිපාටි කළමනාකරණය කරන <b>Administrative Controls</b> වේ."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br><b>Technical Controls (Logical Controls)</b> යනු දෘඩාංග හෝ මෘදුකාංග තාක්ෂණය උපයෝගී කරගෙන ක්‍රියාත්මක වන පාලන ක්‍රම වේ (උදා: TLS Encryption, Backups, Firewalls, Input validation). ප්‍රතිපත්ති ලේඛනගත කිරීම Administrative control එකක් වන අතර Security guards යනු Physical control එකකි."
     },
     {
         paper: 1,
-        question: "මූල්‍ය ආයතනයක (Financial Institution) සංවේදී දත්ත අහිමි වීමකදී (Data Loss) ඇතිවිය හැකි ප්‍රධාන ආයතනික බලපෑම් (Impacts) මොනවාද? (Select all that apply)",
+        question: "Which of the following represent effective 'Administrative Controls' for managing the LMS? (Select 2)",
         type: "multiple",
         options: [
-            "සෘජු මූල්‍ය පාඩු සහ වංචාකාරී ගනුදෙනු (Direct Financial Losses).",
-            "පාරිභෝගික විශ්වාසය බිඳවැටීම සහ ආයතනික කීර්තිනාමයට හානි සිදුවීම (Reputational Damage).",
-            "GDPR හෝ Data Protection පනත් උල්ලංඝනය වීම නිසා නීතිමය දඩ සහ නඩු පැවරීම් (Regulatory Fines & Legal Action).",
-            "දත්ත හානියෙන් පසු පද්ධතියේ කිසිදු ක්‍රියාකාරී අඩපණවීමක් (Downtime) සිදු නොවීම."
+            "Formulating and enforcing clear Password Complexity Policies and Incident Response Plans.",
+            "Installing an Intrusion Prevention System (IPS) appliance in the network rack.",
+            "Conducting regular mandatory cybersecurity and phishing awareness training programs for faculty and students.",
+            "Employing a hardware degausser to securely wipe discarded hard drives."
         ],
-        correct: [0, 1, 2],
-        explanation: "සංවේදී මූල්‍ය දත්ත අහිමි වීමෙන් ආයතනයට සෘජු මුදල් අලාභ, නීතිමය දඩ මුදල්, ආයතනයේ කීර්තිය බිඳවැටීම මෙන්ම ව්‍යාපාර අඛණ්ඩතාවයට (Business continuity) දරුණු බාධා එල්ල වේ."
+        correct: [0, 2],
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br><b>Administrative (Procedural) Controls</b> යනු මිනිසුන්ගේ හැසිරීම් සහ ආයතනික ක්‍රියාවලි නියාමනය කරන නීති, රෙගුලාසි සහ පුහුණු වැඩසටහන් වේ (උදා: Security Policies, Awareness training, Background screening)."
     },
     {
         paper: 1,
-        question: "'පරිගණක අපරාධයක් සිදුවූ බව සියලු දෙනා දැන සිටියද, එය නීතිය හමුවේ ඔප්පු කර නඩු පැවරීම (Prosecute) ඉතා අපහසුය.' මෙම ප්‍රකාශය නිවැරදි වීමට හේතු මොනවාද? (Select all that apply)",
+        question: "What are the primary organizational impacts of severe data loss for a financial institution? (Select all that apply)",
         type: "multiple",
         options: [
-            "ඩිජිටල් සාක්ෂි (Digital Evidence) ඉතා පහසුවෙන් විනාශ කිරීමට, වෙනස් කිරීමට හෝ ස්වයංක්‍රීයව මැකී යාමට ඇති හැකියාව.",
-            "අන්තර්ජාල අපරාධ දේශසීමා ඉක්මවා (Cross-jurisdictional) සිදුවන බැවින් විවිධ රටවල නීතිමය පද්ධති අතර සම්බන්ධීකරණ ගැටලු පැවතීම.",
-            "ප්‍රහාරකයින් VPNs, Tor Network සහ Spoofed IPs මඟින් අනන්‍යතාවය සඟවා සිටීම නිසා පුද්ගලයා නිශ්චිතව තහවුරු කිරීම අපහසු වීම.",
-            "පරිගණක අපරාධ සඳහා කිසිදු රටක නීති නොමැති වීම."
+            "Immediate direct financial losses and fraudulent transaction liabilities.",
+            "Severe reputational damage leading to loss of customer trust and market share.",
+            "Substantial regulatory fines and legal consequences for failing compliance standards (e.g., GDPR, PCI-DSS).",
+            "Zero operational disruption or system downtime during post-incident investigations."
         ],
         correct: [0, 1, 2],
-        explanation: "ඩිජිටල් සාක්ෂිවල අස්ථාවර බව (Volatile nature), දේශසීමා ගැටලු (Jurisdiction issues), සහ ප්‍රහාරකයාගේ අනන්‍යතාවය සඟවා ගැනීමේ සංකීර්ණ තාක්ෂණයන් නිසා සාක්ෂි ඉදිරිපත් කර වැරදිකරු ඔප්පු කිරීම අතිශය අභියෝගාත්මක වේ."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>මූල්‍ය ආයතනයක දත්ත අහිමි වීමකදී සෘජු මුදල් අලාභ, පාරිභෝගික විශ්වාසය කඩවීම (Reputational damage), සහ නීතිමය දඩ හා නඩු පැවරීම් (Regulatory fines) සිදුවේ. විමර්ශන කාලය තුළ පද්ධති අක්‍රිය වීම (Downtime) සිදුවන බැවින් 4 වන ප්‍රකාශය වැරදිය."
     },
     {
         paper: 1,
-        question: "මෘදුකාංග ක්ෂේත්‍රයේ Intellectual Property (IP) ආරක්ෂණ ක්‍රම පිළිබඳ නිවැරදි ප්‍රකාශය තෝරන්න:",
+        question: "'Even when everyone acknowledges that a computer crime has occurred, computer crime is hard to prosecute.' Which reasons explain this difficulty? (Select all that apply)",
+        type: "multiple",
+        options: [
+            "Digital evidence is volatile and can be easily modified, encrypted, or erased without leaving traces.",
+            "Cyber crimes frequently cross geographical and jurisdictional borders, creating international legal friction.",
+            "Perpetrators often hide their identity through proxy networks, compromised botnets, and spoofed IPs.",
+            "Computer crimes are universally exempted from legal liability in modern courtrooms."
+        ],
+        correct: [0, 1, 2],
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>පරිගණක අපරාධ නීතිය හමුවේ ඔප්පු කිරීම අපහසු වීමට ප්‍රධාන හේතු: ඩිජිටල් සාක්ෂි ක්ෂණිකව වෙනස් වීමේ හෝ මැකී යාමේ හැකියාව (Volatile nature), ප්‍රහාරකයා විදේශ රටක සිට ක්‍රියාත්මක වීම නිසා පවතින නීතිමය දේශසීමා බාධක (Jurisdiction issues), සහ තාක්ෂණය හරහා අනන්‍යතාවය වසන් කර තිබීමයි."
+    },
+    {
+        paper: 1,
+        question: "In the context of computer software intellectual property (IP), which statement is correct regarding Copyrights, Patents, and Trade Secrets?",
         type: "single",
         options: [
-            "Copyrights මඟින් මෘදුකාංගයක Underlying Algorithm එක සහ අදහස (Idea) ආරක්ෂා කරයි.",
-            "Copyrights මඟින් කේතයේ ප්‍රකාශනය (Source code expression) ආරක්ෂා කරන අතර, Patents මඟින් මෘදුකාංගයේ ඇති නව නිපැයුම් ක්‍රමවේදය/ක්‍රියාවලිය (Novel algorithm or method) ආරක්ෂා කරයි.",
-            "Trade secrets ලබා ගැනීමට රජයේ ලියාපදිංචි කිරීම් සහ විස්තර ප්‍රසිද්ධ කිරීම අනිවාර්ය වේ.",
-            "මෘදුකාංග සඳහා Patents ලබා ගැනීම Copyrights ලබා ගැනීමට වඩා ඉතා පහසු සහ ඉක්මන් ක්‍රියාවලියකි."
+            "Copyrights protect the underlying abstract idea, while Patents protect only the written text.",
+            "Copyrights protect the specific expression of the source code, Patents protect novel functional methods/algorithms, and Trade Secrets rely entirely on strict confidentiality (NDAs) without public disclosure.",
+            "Trade secrets require mandatory public registration at government intellectual property offices.",
+            "Obtaining a software Patent is substantially easier and faster than acquiring a Copyright."
         ],
         correct: [1],
-        explanation: "<b>Copyright:</b> Source code එකෙහි නිශ්චිත ප්‍රකාශනය (Expression) ආරක්ෂා කරයි (අදහස ආරක්ෂා නොවේ).<br><b>Patent:</b> මෘදුකාංගය පිටුපස ඇති නව නිපැයුම් ක්‍රමවේදය හෝ ක්‍රියාවලිය (Invention/Method) ආරක්ෂා කරයි.<br><b>Trade Secret:</b> රහස්‍යභාවය සුරැකීම මඟින් වාසිය ලබා ගනී (NDA මඟින්, ලියාපදිංචියක් නැත)."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>Copyright:</b> කේතයේ නිශ්චිත ප්‍රකාශනය (Source code expression) ආරක්ෂා කරයි.<br>• <b>Patent:</b> මෘදුකාංගය පිටුපස ඇති නව නිපැයුම් ක්‍රමවේදය/ඇල්ගොරිතමය (Novel functional invention) ආරක්ෂා කරයි.<br>• <b>Trade Secret:</b> රහස්‍යභාවය පවත්වා ගැනීම (NDA මඟින්) හරහා ආරක්ෂාව ලබා ගනී (ප්‍රසිද්ධියේ ලියාපදිංචි කිරීමක් නැත)."
     },
 
     /* ---------------- PART 2: Question 2 (Cryptography & PKI) ---------------- */
     {
         paper: 2,
-        question: "Shift Cipher සූත්‍රය: $x_i = (y_i - K_i) \\pmod{26}$ භාවිතා කර Key $(K_i) = 12$ නම් 'MBBXQ' යන Ciphertext එක Decrypt කළ විට ලැබෙන Plaintext එක කුමක්ද?<br><small>(M=12, B=1, X=23, Q=16)</small>",
+        question: "Using the shift cipher decryption formula $x_i = (y_i - K_i) \\pmod{26}$, decrypt the cipher-text 'MBBXQ' using Key $(K_i) = 12$.<br><small>(Mapping: M=12, B=1, X=23, Q=16)</small>",
         type: "single",
         options: [
             "APPLE",
             "HELLO",
-            "WORLD",
-            "TESTS"
+            "CIPHER",
+            "SECURITY"
         ],
         correct: [0],
-        explanation: "ගණනය කිරීම:<br>M (12): $(12 - 12) \\pmod{26} = 0 \\rightarrow \\mathbf{A}$<br>B (1): $(1 - 12) = -11 \\equiv 15 \\pmod{26} \\rightarrow \\mathbf{P}$<br>B (1): $(1 - 12) = -11 \\equiv 15 \\pmod{26} \\rightarrow \\mathbf{P}$<br>X (23): $(23 - 12) = 11 \\pmod{26} \\rightarrow \\mathbf{L}$<br>Q (16): $(16 - 12) = 4 \\pmod{26} \\rightarrow \\mathbf{E}$<br>එබැවින් නිවැරදි වචනය: <b>APPLE</b>."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>ගණනය කිරීම:<br>• M (12): $(12 - 12) \\pmod{26} = 0 \\rightarrow \\mathbf{A}$<br>• B (1): $(1 - 12) = -11 \\equiv 15 \\pmod{26} \\rightarrow \\mathbf{P}$<br>• B (1): $(1 - 12) = -11 \\equiv 15 \\pmod{26} \\rightarrow \\mathbf{P}$<br>• X (23): $(23 - 12) = 11 \\pmod{26} \\rightarrow \\mathbf{L}$<br>• Q (16): $(16 - 12) = 4 \\pmod{26} \\rightarrow \\mathbf{E}$<br>නිවැරදි Plaintext වචනය වන්නේ <b>APPLE</b> වේ."
     },
     {
         paper: 2,
-        question: "යතුර පිළිබඳ පූර්ව දැනුමක් නොමැති ප්‍රහාරකයෙකුට (Attacker) Shift cipher එකක් බිඳ දැමීමට 'Brute Force approach' එක යොදාගත හැක්කේ කෙසේද?",
+        question: "How can an attacker with no prior knowledge of the key break a mono-alphabetic shift cipher using a 'Brute Force' approach?",
         type: "single",
         options: [
-            "හැකි යතුරු අවකාශය (Key space = 26) ඉතා කුඩා බැවින්, 0 සිට 25 දක්වා හැකි සියලුම යතුරු අත්හදා බලා අර්ථවත් ඉංග්‍රීසි පාඨය හඳුනා ගැනීම මඟින්.",
-            "දත්ත පද්ධතියට Trojan horse එකක් යැවීම මඟින්.",
-            "Public key එක CA මඟින් ඉල්ලා ගැනීම මඟින්.",
-            "හැෂ් අගය Reverse calculation කිරීම මඟින්."
+            "By trying all possible 26 key values systematically until recognizable plaintext is revealed.",
+            "By performing statistical frequency distribution analysis on vowels.",
+            "By launching a distributed denial-of-service attack on the CA server.",
+            "By attempting collision factorizations on the RSA modulus."
         ],
         correct: [0],
-        explanation: "Shift Cipher හි ඇත්තේ යතුරු 26ක් (Key space = 26) පමණි. Brute-force ප්‍රහාරයකදී ප්‍රහාරකයා $K=0, 1, 2, \\dots, 25$ දක්වා සියලුම අගයන් යොදා Decrypt කරමින් කියවිය හැකි අර්ථවත් වචනයක් (Plaintext) ලැබෙන තුරු පරීක්ෂා කරයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>Shift Cipher එකක ඇති මුළු යතුරු ගණන (Key space) 26ක් පමණි. Brute-force ක්‍රමයේදී ප්‍රහාරකයා 0 සිට 25 දක්වා ඇති සියලුම යතුරු එකින් එක යොදා Decrypt කරමින් කියවිය හැකි අර්ථවත් ඉංග්‍රීසි වචනයක් ලැබෙන තුරු පරීක්ෂා කරයි."
     },
     {
         paper: 2,
-        question: "යතුර නොදන්නා අවස්ථාවක, දිගු Ciphertext එකක් (Large ciphertext) බිඳ දැමීමට ඇති හොඳම සහ වේගවත්ම ක්‍රමවේදය කුමක්ද?",
+        question: "What is the most effective approach for an attacker to break a large mono-alphabetic substitution cipher-text without knowing the key?",
         type: "single",
         options: [
-            "Dictionary Attack",
-            "Frequency Analysis (සංඛ්‍යාත විශ්ලේෂණය)",
-            "Birthday Attack",
-            "Man-in-the-Middle Attack"
+            "Frequency Analysis (comparing letter and digraph frequencies to natural language norms)",
+            "Birthday Attack on the cipher block size",
+            "Rainbow table hash lookup",
+            "Man-in-the-Middle certificate interception"
+        ],
+        correct: [0],
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>දිගු Ciphertext එකකදී <b>Frequency Analysis</b> වඩාත්ම සුදුසු වේ. ස්වභාවික භාෂාවක (ඉංග්‍රීසි) අකුරු යෙදෙන සම්භාවිතා රටාවක් ඇත (උදා: 'E', 'T', 'A' බහුලව යෙදේ). Mono-alphabetic ciphers වලදී මෙම සංඛ්‍යාත රටාව එලෙසම පවතින බැවින් අකුරු පහසුවෙන් අනුමාන කළ හැක."
+    },
+    {
+        paper: 2,
+        question: "How does Public Key (Asymmetric) Cryptography effectively solve the 'Key Distribution Problem' inherent in Symmetric Cryptography?",
+        type: "single",
+        options: [
+            "By transmitting symmetric keys over unencrypted plain text channels.",
+            "By allowing the sender to securely encrypt a shared symmetric session key using the recipient's Public Key, which only the recipient can decrypt with their Private Key.",
+            "By eliminating the need for symmetric encryption entirely due to higher processing speeds.",
+            "By requiring both parties to share an identical private master key beforehand."
         ],
         correct: [1],
-        explanation: "සාමාන්‍ය භාෂාවක (උදා: ඉංග්‍රීසි) අකුරු යෙදෙන රටාවන්ගේ ස්ථිර සංඛ්‍යාතයක් ඇත (උදා: 'E', 'T', 'A' බහුලව යෙදේ). Monoalphabetic cipher එකක මෙම රටාව නොවෙනස්ව පවතින බැවින් <b>Frequency Analysis</b> මඟින් පහසුවෙන් Plaintext අකුරු හඳුනාගෙන යතුර බිඳ දැමිය හැක."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>Symmetric ciphers වල දෙපාර්ශවයටම එකම Secret key එක ආරක්ෂිතව බෙදාගැනීමේ ගැටලුවක් පවතී. මෙයට විසඳුම වන්නේ <b>Hybrid Cryptography</b> ය: යවන්නා විසින් ලබන්නාගේ <b>Public Key</b> එක යොදාගෙන Symmetric Session Key එක Encrypt කර යැවීමයි. ලබන්නා තම <b>Private Key</b> එකෙන් එය Decrypt කරගෙන රහස් යතුර ලබා ගනී."
     },
     {
         paper: 2,
-        question: "Symmetric Cryptography වල පවතින 'Key Distribution Problem' එක Public Key Cryptography මඟින් විසඳන්නේ කෙසේද?",
+        question: "Why is having a single Certificate Authority (CA) insufficient for global scalability, and how is this addressed in Public Key Infrastructure (PKI)?",
         type: "single",
         options: [
-            "පාර්ශව දෙකම එකම Private key එක Unencrypted email මඟින් හුවමාරු කර ගැනීමෙන්.",
-            "දත්ත සම්ප්‍රේෂණයට Symmetric Encryption භාවිතය සම්පූර්ණයෙන්ම තහනම් කිරීමෙන්.",
-            "ලබන්නාගේ Public Key එක භාවිතයෙන් තාවකාලික Shared Secret Key (Session Key) එක Encrypt කර යැවීම මඟින් (Hybrid Cryptography).",
-            "Firewall මඟින් සියලුම Encrypted පැකට් Filter කිරීම මඟින්."
-        ],
-        correct: [2],
-        explanation: "Symmetric ciphers වලදී දෙපාර්ශවයටම එකම රහස් යතුර බෙදාගැනීමට අපහසුය. විසඳුම වන්නේ: යවන්නා විසින් ලබන්නාගේ <b>Public Key</b> එක යොදාගෙන Symmetric Session Key එක Encrypt කර යැවීමයි. ලබන්නා තම <b>Private Key</b> එකෙන් එය Decrypt කරගෙන රහස් යතුර ලබා ගනී."
-    },
-    {
-        paper: 2,
-        question: "Public Key Infrastructure (PKI) හි තනි Certificate Authority (Single CA) එකක් පැවතීම Scalable නොවන බැවින් එය විසඳා ඇත්තේ කෙසේද?",
-        type: "single",
-        options: [
-            "ඩිජිටල් සහතික නිකුත් කිරීම නවතා දැමීමෙන්.",
-            "Hierarchical PKI Model (Root CA සහ Intermediate/Subordinate CAs සහිත ධුරාවලියක්) භාවිත කිරීම මඟින්.",
-            "සියලුම පරිශීලකයින්ට තමන්ගේම Root Certificate සාදා ගැනීමට ඉඩ දීමෙන්.",
-            "සෑම වසරකම සියලුම සේවාදායකයන් Re-install කිරීමෙන්."
+            "It is addressed by replacing digital certificates with static pre-shared keys.",
+            "It is addressed using a Hierarchical Trust Model, where a trusted Root CA delegates authority to multiple Intermediate/Subordinate CAs.",
+            "It is addressed by letting each end-user self-sign and broadcast their certificates without oversight.",
+            "Single CAs are fully scalable and PKI does not use sub-authorities."
         ],
         correct: [1],
-        explanation: "ලොව පුරා බිලියන ගණනක් පරිශීලකයින්ට එක් CA එකකට පමණක් සහතික නිකුත් කළ නොහැක. එබැවින් <b>Hierarchical Trust Model</b> එකක් යොදාගනී. මෙහි ඉහළින්ම Root CA එකක් ඇති අතර, ඒ යටතේ විවිධ කලාප හෝ අංශ සඳහා සහතික නිකුත් කරන Intermediate CAs (Sub-CAs) පිහිටුවයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>ලොව පුරා සිටින බිලියන සංඛ්‍යාත පරිශීලකයින්ට තනි CA එකකින් සහතික නිකුත් කිරීම ප්‍රායෝගික නැත (Bottleneck & Single point of failure). විසඳුම වන්නේ <b>Hierarchical PKI Model</b> එකකි. මෙහි ඉහළින්ම Root CA එකක් ඇති අතර, ඒ යටතේ විවිධ ආයතන/කලාප වලට සහතික නිකුත් කරන Intermediate CAs පවතී."
     },
     {
         paper: 2,
-        question: "PKI හි 'Certificate Revocation List (CRL)' එකක මූලික කාර්යභාරය කුමක්ද?",
+        question: "What is the primary function of a Certificate Revocation List (CRL) in PKI?",
         type: "single",
         options: [
-            "අලුතින් නිකුත් කළ සියලුම ක්‍රියාකාරී සහතික ලැයිස්තුගත කිරීම.",
-            "නියමිත කල් ඉකුත්වීමේ දිනයට (Expiry date) පෙර අවලංගු කරන ලද (Revoked) සහ විශ්වාසය තැබිය නොහැකි ඩිජිටල් සහතික ලැයිස්තුගත කර තැබීම.",
-            "භාවිතා කළ හැකි Private Keys වල Backup එකක් තබා ගැනීම.",
-            "පරිශීලකයින්ගේ මුරපද (Passwords) ගබඩා කර තැබීම."
+            "To archive expired cryptographic keys for historical recovery purposes.",
+            "To publish a list of digital certificates that have been revoked by the CA before their scheduled expiration date (e.g., due to key compromise).",
+            "To distribute private keys directly to clients upon authentication.",
+            "To verify the network bandwidth and uptime of web servers."
         ],
         correct: [1],
-        explanation: "යම් සහතිකයක Private key එක Compromise වුවහොත් හෝ සේවකයෙකු ආයතනයෙන් ඉවත් වුවහොත්, එම සහතිකය කල් ඉකුත් වීමට පෙර අවලංගු කළ යුතුය. CA මඟින් අවලංගු කළ සහතික වල අනුක්‍රමික අංක <b>CRL (Certificate Revocation List)</b> එකක ප්‍රකාශයට පත් කරයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>සහතිකයක Private key එක සොරකම් වුවහොත් හෝ සේවකයෙකු ආයතනයෙන් ඉවත් වුවහොත්, එම සහතිකය කල් ඉකුත් වීමට (expiry date) පෙර අවලංගු කළ යුතුය. එලෙස අවලංගු කළ සහතික ලැයිස්තුව <b>CRL (Certificate Revocation List)</b> මඟින් ප්‍රකාශයට පත් කෙරේ."
     },
 
     /* ---------------- PART 3: Question 3 (Access Control & Security Models) ---------------- */
     {
         paper: 3,
-        question: "Discretionary Access Control (DAC) සහ Mandatory Access Control (MAC) අතර වෙනස කුමක්ද?",
+        question: "Differentiate between Discretionary Access Control (DAC) and Mandatory Access Control (MAC):",
         type: "single",
         options: [
-            "DAC හිදී පාලනය පරිපාලක සතු වන අතර, MAC හිදී පාලනය සම්පතේ හිමිකරු සතු වේ.",
-            "DAC හිදී සම්පතෙහි අයිතිකරු (Resource Owner) විසින් අන් අයට අවසර දීම තීරණය කරයි; MAC හිදී මධ්‍යම පද්ධති ප්‍රතිපත්තියක් (Security Labels/Clearances) මඟින් ප්‍රවේශය දැඩිව පාලනය කරයි.",
-            "DAC හමුදා පද්ධති සඳහා පමණක් වන අතර MAC සාමාන්‍ය Windows PC සඳහා වේ.",
-            "MAC ක්‍රමයේදී කිසිදු පරිශීලකයෙකුට ලොග් වීමට ඉඩ නොදේ."
+            "In DAC, access decisions are strictly enforced by system security labels; in MAC, the resource owner sets all permissions.",
+            "In DAC, the resource owner determines who is granted access permissions; in MAC, access is centrally controlled by the operating system based on fixed security clearances and classification labels.",
+            "DAC is exclusively used in top-secret military facilities, while MAC is standard on personal computers.",
+            "There is no distinction; both models grant identical administrative authority to end-users."
         ],
         correct: [1],
-        explanation: "<b>DAC:</b> Object Owner හට තමන්ගේ කැමැත්ත පරිදි (Discretion) අන් අයට Read/Write permissions ලබා දිය හැක (උදා: NTFS).<br><b>MAC:</b> Owner ට පවා අවසර වෙනස් කළ නොහැක; පරිශීලකයාගේ Security Clearance (Top Secret, Secret) සහ Object Label මත පදනම්ව OS එක මඟින් ප්‍රවේශය පාලනය කරයි (උදා: SELinux, Military systems)."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>DAC:</b> සම්පතෙහි අයිතිකරු (Owner) හට තමන්ගේ අභිමතය පරිදි (Discretion) අන් අයට අවසර දිය හැක (උදා: සාමාන්‍ය Windows file permissions).<br>• <b>MAC:</b> Owner ට පවා අවසර වෙනස් කළ නොහැක. පරිශීලකයාගේ Clearance මට්ටම සහ ලේඛනයේ Security Label (Top Secret, Confidential) මත පද්ධතිය මඟින් දැඩිව පාලනය වේ (උදා: SELinux, Military systems)."
     },
     {
         paper: 3,
-        question: "Access Control List (ACL) සහ Capability Ticket අතර වෙනස කුමක්ද?",
+        question: "How does an Access Control List (ACL) differ from a Capability Ticket?",
         type: "single",
         options: [
-            "ACL එක Object (ගොනුව) සමඟ බැඳී ඇති අතර (කාටද මේකට එන්න පුළුවන්?), Capability Ticket එක Subject (පරිශීලකයා) සතුව පවතී (මට මොනවද කරන්න පුළුවන්?).",
-            "ACL පරිශීලකයා ළඟ තබා ගන්නා අතර Capability Ticket ගොනුව ළඟ තබා ගනී.",
-            "දෙකම එකම ආකාරයෙන් ක්‍රියාත්මක වේ.",
-            "Capability Ticket එකක් කිසි විටෙකත් අවලංගු කළ නොහැක."
+            "An ACL is attached to the Object (specifying who can access it), whereas a Capability Ticket is held by the Subject (specifying what objects the subject can access).",
+            "An ACL is held by the user token, whereas a Capability Ticket resides inside the file system header.",
+            "Capability Tickets can never be revoked, whereas ACLs are modified automatically every millisecond.",
+            "Both structures are row-based matrices operating exclusively on network boundary routers."
         ],
         correct: [0],
-        explanation: "<b>ACL (Column-centric):</b> සම්පත (Object) සමඟ සම්බන්ධ වන අතර, එම සම්පතට ප්‍රවේශ විය හැකි පරිශීලකයින් සහ ඔවුන්ගේ අවසර ලැයිස්තුගත කරයි.<br><b>Capability Ticket (Row-centric):</b> පරිශීලකයා (Subject) සතුව පවතින Token/Ticket එකකි. එමඟින් ඔහුට ප්‍රවේශ විය හැකි සම්පත් සහ අවසර පෙන්නුම් කරයි (උදා: Kerberos tickets)."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>ACL (Column-centric):</b> සම්පත (Object/ගොනුව) සමඟ බැඳී පවතින අතර, එම ගොනුවට කාටද ඇතුල් විය හැක්කේ යන්න දක්වයි.<br>• <b>Capability Ticket (Row-centric):</b> පරිශීලකයා (Subject) සතුව පවතින ටිකට්පතකි. එමඟින් ඔහුට ප්‍රවේශ විය හැකි සම්පත් සහ අවසර පෙන්නුම් කරයි (උදා: Kerberos tickets)."
     },
     {
         paper: 3,
-        question: "Workstation Hijacking (පරිශීලකයෙකු ලොග් වී පරිගණකය දමා ගිය විට අනවසරයෙන් ප්‍රවේශ වීම) වැළැක්වීමට නිර්දේශ කළ හැකි පාලන ක්‍රම 2ක් තෝරන්න. (Select 2)",
+        question: "Which of the following controls effectively prevent 'Workstation Hijacking' when a user leaves their computer unattended? (Select 2)",
         type: "multiple",
         options: [
-            "කෙටි කාලයක් (උදා: මිනිත්තු 3-5) ක්‍රියාකාරකම් නොමැති වූ විට ස්වයංක්‍රීයව පරිගණකය Lock වන Inactivity Screen Lock ප්‍රතිපත්තියක් යෙදීම.",
-            "පරිශීලකයා අසුනෙන් නැගිට යන විට පරිගණකය ස්වයංක්‍රීයව අගුළු වැටෙන Proximity Cards / Bluetooth tokens හෝ Log-off Awareness පුහුණුව ලබා දීම.",
-            "පරිගණකයේ Hard disk එක Defragment කිරීම.",
-            "පරිශීලකයාගේ මුරපදය Screen එක මත ලියා තැබීම."
+            "Configuring an automatic inactivity screen lock policy with a short timeout threshold (e.g., 3-5 minutes).",
+            "Utilizing proximity tokens / smart card removal policies that auto-lock the session when the user walks away.",
+            "Installing disk defragmentation utilities on all client machines.",
+            "Writing the administrator credentials beneath the physical keyboard."
         ],
         correct: [0, 1],
-        explanation: "Short idle screen lock timeout, Smartcard/Token removal on leaving, Dynamic biometric presence sensing, සහ පරිශීලකයින් අසුනෙන් නැගිටින විට Windows Key + L එබීමට පුහුණු කිරීම මඟින් Workstation Hijacking වළක්වයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>පරිශීලකයෙකු පරිගණකය අතහැර ගිය විට අනවසරයෙන් ප්‍රවේශ වීම (Workstation Hijacking) වැළැක්වීමට: ස්වයංක්‍රීයව පරිගණකය අගුළු වැටෙන <b>Inactivity Screen Lock</b> සහ පරිශීලකයා ඈතට යන විට lock වන <b>Proximity Cards / Smartcard removal</b> ප්‍රතිපත්ති ක්‍රියාත්මක කළ හැක."
     },
     {
         paper: 3,
-        question: "Single Sign-On (SSO) පද්ධතියක් හඳුන්වා දීමේ වාසි සහ අවාසි (Security & Admin perspectives) මොනවාද? (Select all that apply)",
+        question: "A University proposes implementing a Single Sign-On (SSO) solution. What are the key trade-offs from security and administrative perspectives? (Select all that apply)",
         type: "multiple",
         options: [
-            "පරිශීලකයින්ට එක් මුරපදයක් මතක තබා ගැනීම ප්‍රමාණවත් බැවින් Password fatigue අඩු වී ඵලදායිතාව වැඩි වේ.",
-            "පරිපාලකයාට එකම මධ්‍යස්ථානයකින් (Centralized management) ගිණුම් කළමනාකරණය හා අවලංගු කිරීම පහසු වේ.",
-            "SSO ගිණුමක මුරපදය සොරකම් කළහොත් (Compromise වුවහොත්), සියලුම පද්ධති වෙත පහසුවෙන්ම ප්‍රවේශ වීමට හැකි Single Point of Failure අවදානමක් නිර්මාණය වීම.",
-            "SSO හඳුන්වා දීමෙන් මුරපද අවශ්‍යතාවය සම්පූර්ණයෙන්ම නැති වී යයි."
+            "Reduces password fatigue, improving end-user experience and operational productivity.",
+            "Provides centralized account administration, enabling immediate global credential revocation upon termination.",
+            "Introduces a critical Single Point of Failure (if master SSO credentials are compromised, all connected systems become accessible).",
+            "Completely eliminates the requirement for any backend authorization policies."
         ],
         correct: [0, 1, 2],
-        explanation: "SSO මඟින් භාවිතයේ පහසුව සහ මධ්‍යගත පරිපාලනය (Centralized identity) ලබා දුන්නද, එහි ඇති ප්‍රධානම අවදානම වන්නේ <b>Single Point of Failure</b> වීමයි (එක් Login එකක් Hack වුවහොත් සියලුම පද්ධති අනතුරේ වැටේ)."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>SSO මඟින් මුරපද මතක තබා ගැනීමේ අපහසුව (Password fatigue) අඩු කර මධ්‍යගත පරිපාලනය (Centralized control) පහසු කරයි. නමුත් එහි ප්‍රධානතම අවාසිය වන්නේ <b>Single Point of Failure</b> අවදානමයි (එක් Login එකක් compromise වුවහොත් සියලුම පද්ධති hack විය හැක)."
     },
     {
         paper: 3,
-        question: "SSO පද්ධතියක් සඳහා Multi-Factor Authentication (MFA) අනිවාර්යයෙන්ම යෙදිය යුත්තේ ඇයි?",
+        question: "Why is the integration of strong Multi-Factor Authentication (MFA) critical when deploying an SSO environment?",
         type: "single",
         options: [
-            "SSO පරිශීලකයින්ගේ මුරපද ඉක්මනින් අමතක වන බැවිනි.",
-            "SSO හි පවතින Single Point of Failure අවදානම අවම කර, මුරපදය කාන්දු වුවද දෙවන සාධකයකින් (OTP, Biometric) ආරක්ෂාව තහවුරු කිරීමට.",
-            "පද්ධතියේ වේගය (Bandwidth) වැඩි කිරීමට.",
-            "SSO සඳහා තනි මුරපදයක් ප්‍රමාණවත් නොවන බවට නීතියක් ඇති නිසා පමණි."
+            "Because SSO users inevitably forget their passwords every week.",
+            "To mitigate the risk of Single Point of Failure by ensuring compromised master passwords alone cannot grant unauthorized access.",
+            "To boost internal local area network transmission throughput.",
+            "To bypass mandatory firewall inspection rules."
         ],
         correct: [1],
-        explanation: "SSO ගිණුමක් බිඳවැටුණහොත් විශ්වවිද්‍යාලයේ සියලුම පද්ධති (LMS, Email, Helpdesk) අනතුරේ වැටෙන බැවින්, MFA (Something you know + Something you have/are) මඟින් අමතර ආරක්ෂණ ස්ථරයක් සපයයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>SSO හි පවතින Single Point of Failure අවදානම අවම කිරීම සඳහා MFA අත්‍යවශ්‍ය වේ. මුරපදය සොරකම් වුවද, දෙවන සාධකයක් (OTP, Authenticator app, Biometric) නොමැතිව ප්‍රහාරකයාට පද්ධතියට ඇතුළු විය නොහැක."
     },
     {
         paper: 3,
-        question: "Bell-LaPadula (BLP) ආරක්ෂණ ආකෘතියේ රහස්‍යභාවය (Confidentiality) සුරකින මූලික නීති 2 කුමක්ද?",
+        question: "Which properties define the Bell-LaPadula (BLP) security model for maintaining data confidentiality?",
         type: "single",
         options: [
-            "Read-up සහ Write-down",
-            "Simple Security Property (No Read Up) සහ *-Property (No Write Down)",
-            "Simple Integrity Property (No Read Down) සහ *-Integrity Property (No Write Up)",
-            "Discretionary Access සහ Mandatory Access"
+            "Read-Up Allowed, Write-Down Allowed",
+            "Simple Security Property ('No Read Up') and *-Property ('No Write Down')",
+            "Simple Integrity Property ('No Read Down') and *-Integrity Property ('No Write Up')",
+            "Discretionary Override and Role Revocation"
         ],
         correct: [1],
-        explanation: "BLP Model (Confidentiality):<br>1. <b>Simple Security Property:</b> 'No Read Up' (පහළ clearance ඇති අයට ඉහළ වර්ගීකරණයේ දත්ත කියවිය නොහැක).<br>2. <b>*-Property (Star Property):</b> 'No Write Down' (ඉහළ clearance ඇති අයට පහළ මට්ටමේ ලේඛන වලට ලිවිය නොහැක - රහස් කාන්දු වීම වැළැක්වීමට)."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>BLP Model (රහස්‍යභාවය / Confidentiality සුරැකීම):<br>1. <b>Simple Security Property ('No Read Up'):</b> පහළ clearance ඇති අයට ඉහළ classification ඇති රහස්‍ය දත්ත කියවිය නොහැක.<br>2. <b>*-Property ('No Write Down'):</b> ඉහළ clearance ඇති අයට පහළ මට්ටමේ ලේඛන වලට ලිවිය නොහැක (රහස්‍ය දත්ත පහළ මට්ටමට කාන්දු වීම වැළැක්වීමට)."
     },
 
     /* ---------------- PART 4: Question 4 (Hashes, Firewalls, UTM, VPN, BCP/DRP) ---------------- */
     {
         paper: 4,
-        question: "Cryptographic Hash Functions සතුව තිබිය යුතු අනිවාර්ය ආරක්ෂණ ගුණාංග (Security Properties) 2ක් තෝරන්න. (Select 2)",
+        question: "Which of the following are mandatory security properties of a Cryptographic Hash Function? (Select 2)",
         type: "multiple",
         options: [
-            "Pre-image resistance (One-way property): දී ඇති hash අගයක් $h$ මඟින් මුල් පණිවිඩය $m$ ගණනය කිරීම ප්‍රායෝගිකව කළ නොහැකි වීම.",
-            "Collision resistance: එකම hash අගය ලබා දෙන වෙනස් පණිවිඩ දෙකක් ($m_1 \\neq m_2$) සොයා ගැනීම ප්‍රායෝගිකව කළ නොහැකි වීම.",
-            "Reversibility: Hash අගය මඟින් ඕනෑම වෙලාවක මුල් දත්ත ආපසු ලබා ගැනීමට හැකි වීම.",
-            "Variable-length output: පණිවිඩයේ ප්‍රමාණය අනුව output එකේ දිග වෙනස් වීම."
+            "Pre-image Resistance (One-Way property): Given hash $h$, it is computationally infeasible to determine original message $m$.",
+            "Collision Resistance: It is computationally infeasible to find any two distinct messages $m_1 \\neq m_2$ such that $\\text{Hash}(m_1) = \\text{Hash}(m_2)$.",
+            "Reversibility: The ability to de-hash the output back into original clear text using a secret key.",
+            "Dynamic Output Length: The output digest length automatically expands depending on input file size."
         ],
         correct: [0, 1],
-        explanation: "Cryptographic Hash එකක් <b>One-way (Pre-image resistant)</b> විය යුතුය, <b>Second Pre-image resistant</b> විය යුතුය, සහ එකම හැෂ් අගය ලැබෙන වෙනස් පණිවිඩ යුගලක් නොතිබිය යුතුය (<b>Collision resistant</b>). Hash function එකක් කිසිවිටෙක Reversible නොවේ."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>Cryptographic Hash functions සතු විය යුතු අනිවාර්ය ගුණාංග වන්නේ:<br>• <b>Pre-image resistance (One-way):</b> Hash එකෙන් මුල් පණිවිඩය සෙවිය නොහැකි විය යුතුය.<br>• <b>Collision resistance:</b> එකම Hash අගය ලැබෙන වෙනස් පණිවිඩ දෙකක් සොයා ගැනීමට නොහැකි විය යුතුය.<br>(Hash functions කිසි විටෙකත් reversible නොවන අතර output එක සෑම විටම fixed-length වේ)."
     },
     {
         paper: 4,
-        question: "Simple Packet Filtering සහ Stateful Packet Inspection (SPI) Firewall අතර ප්‍රධාන වෙනස කුමක්ද?",
+        question: "How does Simple Packet Filtering differ from Stateful Packet Inspection (SPI)?",
         type: "single",
         options: [
-            "Simple Packet Filtering මඟින් Connection state එක මතක තබා ගන්නා අතර SPI එසේ නොකරයි.",
-            "Simple Packet Filtering පැකට්ටුවක Header තොරතුරු (IP, Port) පමණක් හුදකලාව පරීක්ෂා කරයි; SPI මඟින් ක්‍රියාකාරී සම්බන්ධතාවයේ තත්ත්වය (Connection State/Context) නිරීක්ෂණය කර වලංගු සම්බන්ධතාවයක කොටසක්දැයි පරීක්ෂා කරයි.",
-            "Stateful Firewall මඟින් IP පැකට් බැලීම සිදු නොකරයි.",
-            "Simple Packet Filter සෑම විටම SPI වලට වඩා ආරක්ෂිතය."
+            "Simple filtering monitors the entire TCP handshake sequence, whereas SPI examines only individual headers.",
+            "Simple Packet Filtering evaluates packets in total isolation based solely on static header rules (IP, Port), whereas SPI tracks connection state and context in a dynamic state table.",
+            "Simple filtering operates at Layer 7, while Stateful filtering operates at Layer 1.",
+            "Simple Packet Filtering is inherently more resilient against IP spoofing attacks than SPI."
         ],
         correct: [1],
-        explanation: "<b>Simple Packet Filter:</b> Stateless වේ. එක් එක් පැකට්ටුවේ Source/Dest IP හා Port පමණක් බලයි (පැකට් අතර සම්බන්ධයක් නොදනී).<br><b>Stateful Packet Inspection (SPI):</b> State table එකක් පවත්වා ගනිමින් TCP handshake හා connection context එක පරීක්ෂා කර, ඇතුළතින් ආරම්භ කළ වලංගු සම්බන්ධතාවයකට ලැබෙන ප්‍රතිචාර පැකට් පමණක් ඇතුල් වීමට ඉඩ දෙයි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>Simple Packet Filter (Stateless):</b> පැකට්ටුවක Header තොරතුරු (Source/Dest IP, Port) පමණක් හුදකලාව බලයි (පෙර පැකට් සමඟ සම්බන්ධයක් නොදනී).<br>• <b>Stateful Packet Inspection (SPI):</b> සක්‍රීය සම්බන්ධතා ලැයිස්තුවක් (State table) තබා ගනිමින්, TCP handshake හා connection context එක පරීක්ෂා කර වලංගු සම්බන්ධතාවයක කොටසක් වන පැකට් වලට පමණක් ඇතුල් වීමට ඉඩ දෙයි."
     },
     {
         paper: 4,
-        question: "Unified Threat Management (UTM) උපාංගයක් මඟින් සාමාන්‍යයෙන් ලබා දෙන ආරක්ෂක සේවාවන් මොනවාද? (Select all that apply)",
+        question: "Which of the following security services are typically unified inside a Unified Threat Management (UTM) appliance? (Select all that apply)",
         type: "multiple",
         options: [
-            "Network Firewall & Packet Inspection",
+            "Network Firewall and Packet Inspection",
             "Intrusion Prevention System (IPS)",
-            "Gateway Antivirus & Anti-malware scanning",
-            "Spam filtering & Content / Web URL filtering"
+            "Gateway Anti-Malware / Antivirus scanning",
+            "Content / URL Filtering and Spam protection"
         ],
         correct: [0, 1, 2, 3],
-        explanation: "UTM (Unified Threat Management) යනු Firewall, VPN Gateway, Intrusion Prevention (IPS), Antivirus, සහ Web/Content Filtering යන සියලුම ආරක්ෂක කාර්යයන් තනි Appliance එකක් තුළ ඒකාබද්ධ කර ලබා දෙන පද්ධතියකි."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br><b>UTM (Unified Threat Management)</b> යනු ජාල ආරක්ෂණ සේවා රැසක් (Firewall, IPS, Gateway Antivirus, URL Filtering, Spam Protection, සහ VPN) තනි Hardware හෝ Software appliance එකක් තුළ ඒකාබද්ධ කර ලබා දෙන පද්ධතියකි."
     },
     {
         paper: 4,
-        question: "VPN Tunnelling භාවිතයේ ප්‍රධාන වාසියක් සහ ප්‍රධාන අවාසියක් නිවැරදිව දක්වා ඇති තේරීම කුමක්ද?",
+        question: "State the primary advantage and primary disadvantage of implementing Virtual Private Network (VPN) Tunnelling:",
         type: "single",
         options: [
-            "වාසිය: අන්තර්ජාලය හරහා Encrypted සහ Secure සන්නිවේදනයක් ලබා දීම; අවාසිය: Encryption/Decryption overhead එක නිසා Performance/Speed තරමක් අඩුවීම.",
-            "වාසිය: කිසිදු මුරපදයක් අවශ්‍ය නොවීම; අවාසිය: දත්ත Encrypt නොවීම.",
-            "වාසිය: පරිගණක වයිරස් සියල්ල ඉවත් වීම; අවාසිය: මිලෙන් අධික වීම.",
-            "වාසිය: Network cable අවශ්‍ය නොවීම; අවාසිය: Wi-Fi සමඟ පමණක් වැඩ කිරීම."
+            "Advantage: Provides secure, encrypted communications across untrusted public networks; Disadvantage: Introduces processing overhead and latency due to encryption/decryption routines.",
+            "Advantage: Increases raw bandwidth speeds across public backbones; Disadvantage: Completely eliminates data integrity verification.",
+            "Advantage: Does not require internet connectivity; Disadvantage: Restricted to single-user operation.",
+            "Advantage: Immunizes endpoints from all internal malware; Disadvantage: Highly volatile transmission loss."
         ],
         correct: [0],
-        explanation: "<b>වාසිය:</b> පොදු අන්තර්ජාලය හරහා ගමන් කරන දත්ත Encrypt කර ආරක්ෂිත පෞද්ගලික උමගක් (Secure Tunnel) නිර්මාණය කිරීම.<br><b>අවාසිය:</b> Encryption හා Encapsulation ක්‍රියාවලිය නිසා Network overhead එකක් ඇති වී වේගය (Latency/Bandwidth) අඩුවීම."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>වාසිය:</b> අනාරක්ෂිත පොදු අන්තර්ජාලය හරහා Encrypted වූ රහස්‍ය හා ආරක්ෂිත උමගක් (Secure tunnel) ලබා දීම.<br>• <b>අවාසිය:</b> දත්ත Encrypt/Decrypt කිරීමේදී සහ Tunnel headers එකතු කිරීමේදී CPU overhead එකක් සහ Network latency එකක් ඇති වීම."
     },
     {
         paper: 4,
-        question: "Disaster Recovery Planning වලදී 'Cold Site' ක්‍රමවේදය සහ ඒ හා සම්බන්ධ විකල්ප පිළිබඳ නිවැරදි ප්‍රකාශ මොනවාද? (Select all that apply)",
+        question: "Regarding Business Continuity and Disaster Recovery (BCP/DRP), which statements correctly evaluate a 'Cold Site' strategy and its alternatives? (Select all that apply)",
         type: "multiple",
         options: [
-            "Cold Site එකක ගොඩනැගිල්ල, විදුලිය සහ Network wiring ඇති නමුත්, පරිගණක දෘඩාංග (Hardware) හෝ දත්ත ස්ථාපනය කර නොමැත (ලාභදායී නමුත් යථා තත්ත්වයට පත්වීමට වැඩි කාලයක් ගනී).",
-            "Hot Site යනු වහාම වැඩ ආරම්භ කළ හැකි පරිදි සම්පූර්ණ Hardware, Software සහ තත්‍ය කාලීන Data Mirroring සහිත විකල්පයකි.",
-            "Warm Site යනු අවශ්‍ය Hardware සකසා ඇති නමුත් නවතම දත්ත Backup එකෙන් Restore කරගත යුතු අතරමැදි විකල්පයකි.",
-            "Cold Site එකක් යනු තත්පර ගණනකින් ස්වයංක්‍රීයව ක්‍රියාත්මක වන මිලෙන් අධිකම ආපදා ප්‍රතිසාධන ක්‍රමයයි."
+            "A Cold Site provides empty facility space, electrical power, and heating/cooling, but no pre-installed computing hardware or active data restores.",
+            "A Hot Site is a fully operational mirrored facility equipped with real-time data replication and ready hardware, enabling rapid cut-over within minutes or hours.",
+            "A Warm Site represents a middle-ground containing pre-installed hardware racks, but requires recent backup restoration prior to operational launch.",
+            "A Cold Site is the most expensive recovery strategy due to automated zero-downtime clustering."
         ],
         correct: [0, 1, 2],
-        explanation: "<b>Cold Site:</b> පහසුකම් (Power/AC) පමණක් ඇත, Hardware/Data නැත (ලාභයි, Recovery time දිගුයි).<br><b>Warm Site:</b> Hardware ස්ථාපිතව ඇත, දත්ත Backup වලින් ප්‍රතිස්ථාපනය කළ යුතුය.<br><b>Hot Site:</b> දත්ත සහ දෘඩාංග සියල්ල සූදානම්ව පවතී (විනාඩි කිහිපයකින් ක්‍රියාත්මක කළ හැක, මිල අධිකයි)."
+        explanation: "<b>සිංහල පැහැදිලි කිරීම:</b><br>• <b>Cold Site:</b> ගොඩනැගිල්ල සහ විදුලිය පමණක් ඇත (ලාභදායී වේ, නමුත් වැඩ ආරම්භ කිරීමට දින හෝ සති ගණනක් යයි).<br>• <b>Warm Site:</b> Hardware ස්ථාපිතව ඇත, දත්ත Backup වලින් Restore කරගත යුතුය.<br>• <b>Hot Site:</b> දත්ත සහ පරිගණක සියල්ල සූදානම්ව පවතී (විනාඩි කිහිපයකින් ක්‍රියාත්මක කළ හැක, මිල අධිකයි). (4 වන ප්‍රකාශය වැරදිය)."
     }
 ];
 
-// ---------- QUIZ APPLICATION LOGIC ----------
+// ---------- APPLICATION CONTROLLER ----------
 const questionBadgeEl = document.getElementById('question-badge');
 const questionTextEl = document.getElementById('question-text');
 const optionsListEl = document.getElementById('options-list');
@@ -580,7 +582,6 @@ const feedbackEl = document.getElementById('feedback');
 const explanationTextEl = document.getElementById('explanation-text');
 const submitMultiBtn = document.getElementById('submit-multi-btn');
 
-const QUESTIONS_PER_PAPER = 6;
 const TOTAL_PAPERS = 4;
 const quizTimeInMinutes = 30; 
 
@@ -630,27 +631,36 @@ function loadPaper(paperNumber) {
 }
 
 function renderPaperSelection() {
-    const titles = [
-        "Question 1: Security Controls, Laws & LMS",
-        "Question 2: Cryptography, Ciphers & PKI",
-        "Question 3: Access Control & Models",
-        "Question 4: Firewalls, Hashes & DRP"
+    const sectionTitles = [
+        "Question 1: Security Controls, Laws & LMS Protection",
+        "Question 2: Cryptography, Shift Ciphers & PKI",
+        "Question 3: Access Control Models & BLP Architecture",
+        "Question 4: Firewalls, Cryptographic Hashes & DRP"
     ];
 
     for (let i = 0; i < TOTAL_PAPERS; i++) {
+        const paperQuestionsCount = fullQuizData.filter(q => q.paper === i + 1).length;
         const paperItem = document.createElement('div');
         paperItem.classList.add('paper-item');
         paperItem.dataset.paperNumber = i + 1;
         paperItem.innerHTML = `
-            <h4>Part ${i + 1}</h4>
-            <p style="font-weight:600; color:#333; margin-bottom:5px;">${titles[i]}</p>
-            <p>6 Comprehensive Questions</p>
+            <h4>Section ${i + 1}</h4>
+            <p style="font-weight:600; color:#1e293b; margin-bottom:6px;">${sectionTitles[i]}</p>
+            <p>${paperQuestionsCount} Questions</p>
         `;
         paperItem.addEventListener('click', (e) => {
             loadPaper(parseInt(e.currentTarget.dataset.paperNumber));
         });
         paperSelectionGridEl.appendChild(paperItem);
     }
+}
+
+function getGlobalIndex(paperIdx, questionIdx) {
+    let offset = 0;
+    for (let p = 0; p < paperIdx; p++) {
+        offset += fullQuizData.filter(q => q.paper === p + 1).length;
+    }
+    return offset + questionIdx;
 }
 
 function renderNavigationPalette() {
@@ -670,11 +680,10 @@ function renderNavigationPalette() {
 
 function updateNavigationPalette() {
     const navItems = navPaletteEl.children;
-    const globalStartIndex = currentPaperIndex * QUESTIONS_PER_PAPER;
 
     for (let i = 0; i < navItems.length; i++) {
         const item = navItems[i];
-        const globalIndex = globalStartIndex + i;
+        const globalIndex = getGlobalIndex(currentPaperIndex, i);
         item.classList.remove('current', 'answered-correct', 'answered-incorrect');
 
         const answer = allUserAnswers[globalIndex];
@@ -712,10 +721,9 @@ function jumpToQuestion(index) {
 
 function loadQuestion() {
     const currentQuestion = currentPaperData[currentQuestionIndex];
-    const globalQuestionIndex = (currentPaperIndex * QUESTIONS_PER_PAPER) + currentQuestionIndex;
+    const globalQuestionIndex = getGlobalIndex(currentPaperIndex, currentQuestionIndex);
     const currentSavedAnswer = allUserAnswers[globalQuestionIndex];
 
-    // Setup Question UI
     questionTextEl.innerHTML = `${currentQuestionIndex + 1}. ${currentQuestion.question}`;
     optionsListEl.innerHTML = '';
     feedbackEl.style.display = 'none';
@@ -730,7 +738,7 @@ function loadQuestion() {
     }
 
     backBtn.disabled = currentQuestionIndex === 0;
-    nextBtn.innerText = (currentQuestionIndex === currentPaperData.length - 1) ? 'Finish Part' : 'Next';
+    nextBtn.innerText = (currentQuestionIndex === currentPaperData.length - 1) ? 'Finish Section' : 'Next';
     nextBtn.disabled = (currentSavedAnswer === null && currentQuestionIndex < currentPaperData.length - 1);
 
     tempSelectedOptions = currentSavedAnswer ? [...currentSavedAnswer] : [];
@@ -772,12 +780,12 @@ function loadQuestion() {
         submitMultiBtn.disabled = tempSelectedOptions.length === 0;
     }
 
-    progressTextEl.innerText = `Question ${currentQuestionIndex + 1} of ${currentPaperData.length} (Part ${currentPaperIndex + 1})`;
+    progressTextEl.innerText = `Question ${currentQuestionIndex + 1} of ${currentPaperData.length} (Section ${currentPaperIndex + 1})`;
     updateNavigationPalette();
 }
 
 function handleOptionClick(index, question) {
-    const globalQuestionIndex = (currentPaperIndex * QUESTIONS_PER_PAPER) + currentQuestionIndex;
+    const globalQuestionIndex = getGlobalIndex(currentPaperIndex, currentQuestionIndex);
     if (allUserAnswers[globalQuestionIndex] !== null) return;
 
     if (question.type === 'single') {
@@ -787,7 +795,6 @@ function handleOptionClick(index, question) {
         nextBtn.disabled = false;
         updateNavigationPalette();
     } else {
-        // Multiple Select toggle
         const optIndex = tempSelectedOptions.indexOf(index);
         if (optIndex > -1) {
             tempSelectedOptions.splice(optIndex, 1);
@@ -795,7 +802,6 @@ function handleOptionClick(index, question) {
             tempSelectedOptions.push(index);
         }
 
-        // Update checkbox visuals
         Array.from(optionsListEl.children).forEach((li, idx) => {
             const checkbox = li.querySelector('input');
             const isChecked = tempSelectedOptions.includes(idx);
@@ -812,7 +818,7 @@ function handleOptionClick(index, question) {
 }
 
 submitMultiBtn.addEventListener('click', () => {
-    const globalQuestionIndex = (currentPaperIndex * QUESTIONS_PER_PAPER) + currentQuestionIndex;
+    const globalQuestionIndex = getGlobalIndex(currentPaperIndex, currentQuestionIndex);
     const currentQuestion = currentPaperData[currentQuestionIndex];
 
     allUserAnswers[globalQuestionIndex] = [...tempSelectedOptions];
@@ -836,12 +842,12 @@ function renderOptionStatesAfterAnswer(question, userSelection) {
 }
 
 function showFeedback(question) {
-    const correctTexts = question.correct.map(i => `• ${question.options[i]}`).join('<br>');
+    const correctTexts = question.correct.map(i => `✔ ${question.options[i]}`).join('<br>');
     explanationTextEl.innerHTML = `
-        <div style="font-weight: bold; color: #155724; margin-bottom: 8px;">නිවැරදි පිළිතුර(වල්):</div>
-        <div style="margin-bottom: 12px; font-weight: 500;">${correctTexts}</div>
-        <hr style="border: 0; border-top: 1px solid #ced4da; margin-bottom: 10px;">
-        <div style="color: #333;"><b>විස්තරාත්මක පැහැදිලි කිරීම:</b><br>${question.explanation}</div>
+        <div style="font-weight: bold; color: #155724; margin-bottom: 6px;">Correct Answer(s):</div>
+        <div style="margin-bottom: 12px; font-weight: 500; color: #1b4332;">${correctTexts}</div>
+        <hr style="border: 0; border-top: 1px solid #cbd5e1; margin-bottom: 10px;">
+        <div style="color: #1e293b;">${question.explanation}</div>
     `;
     feedbackEl.style.display = 'block';
 }
@@ -851,10 +857,8 @@ function showResults(timeIsUp = false) {
     clearInterval(timerInterval);
 
     let paperScore = 0;
-    const globalStartIndex = currentPaperIndex * QUESTIONS_PER_PAPER;
-
     for (let i = 0; i < currentPaperData.length; i++) {
-        const globalIndex = globalStartIndex + i;
+        const globalIndex = getGlobalIndex(currentPaperIndex, i);
         if (isAnswerCorrect(allUserAnswers[globalIndex], currentPaperData[i].correct)) {
             paperScore++;
         }
@@ -863,13 +867,13 @@ function showResults(timeIsUp = false) {
     const quizContainer = document.getElementById('quiz-container');
     quizContainer.innerHTML = `
         <div id="header">
-            <h2>${timeIsUp ? 'කාලය අවසන්!' : 'ප්‍රශ්න පත්‍රය අවසන්!'}</h2>
+            <h2>${timeIsUp ? 'Time Expired!' : 'Section Completed!'}</h2>
         </div>
-        <div id="question-area" style="text-align: center; padding: 40px 20px;">
-            <h3>Part ${currentPaperIndex + 1} සඳහා ඔබේ ලකුණු මට්ටම</h3>
-            <p style="font-size: 3.5em; font-weight: bold; color: #1e3c72; margin: 15px 0;">${paperScore} / ${currentPaperData.length}</p>
-            <p style="font-size: 1.1em; color: #555;">${paperScore === currentPaperData.length ? 'විශිෂ්ටයි! සියලුම ප්‍රශ්න නිවැරදියි.' : 'නැවත පුහුණු වී ඔබේ දැනුම තහවුරු කරගන්න.'}</p>
-            <button id="restart-btn" style="background-color: #1e3c72; color: white; border: none; padding: 12px 28px; border-radius: 6px; cursor: pointer; font-size: 1.1em; margin-top: 20px;">වෙනත් කොටසක් තෝරන්න</button>
+        <div id="question-area" style="text-align: center; padding: 45px 20px;">
+            <h3 style="color: #1e293b;">Your Score for Section ${currentPaperIndex + 1}</h3>
+            <p style="font-size: 3.5em; font-weight: bold; color: #1f3c88; margin: 15px 0;">${paperScore} / ${currentPaperData.length}</p>
+            <p style="font-size: 1.05em; color: #64748b;">${paperScore === currentPaperData.length ? 'Outstanding work! All answers correct.' : 'Good effort! Review the explanations to reinforce key concepts.'}</p>
+            <button id="restart-btn" style="background-color: #1f3c88; color: white; border: none; padding: 12px 28px; border-radius: 6px; cursor: pointer; font-size: 1.1em; margin-top: 20px;">Choose Another Section</button>
         </div>
     `;
     document.getElementById('restart-btn').addEventListener('click', () => {
@@ -893,7 +897,7 @@ backBtn.addEventListener('click', () => {
     }
 });
 
-// Render Papers on start
+// Initialize on page load
 renderPaperSelection();
 </script>
 </body>
